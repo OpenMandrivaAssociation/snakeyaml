@@ -1,7 +1,7 @@
-%_javapackages_macros
+%{?_javapackages_macros:%_javapackages_macros}
 Name:             snakeyaml
 Version:          1.11
-Release:          7.0%{?dist}
+Release:          7.1%{?dist}
 Summary:          YAML parser and emitter for the Java programming language
 License:          ASL 2.0
 # http://code.google.com/p/snakeyaml
