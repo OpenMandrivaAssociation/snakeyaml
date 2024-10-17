@@ -5,7 +5,7 @@ Release:          7.1%{?dist}
 Summary:          YAML parser and emitter for the Java programming language
 License:          ASL 2.0
 # http://code.google.com/p/snakeyaml
-URL:              http://code.google.com/p/%{name}
+URL:              https://code.google.com/p/%{name}
 # http://snakeyaml.googlecode.com/files/SnakeYAML-all-1.9.zip
 Source0:          http://%{name}.googlecode.com/files/SnakeYAML-all-%{version}.zip
 
