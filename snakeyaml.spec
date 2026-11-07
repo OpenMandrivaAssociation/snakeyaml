@@ -1,6 +1,6 @@
 Name:		snakeyaml
 Version:	2.7
-Release:	1
+Release:	2
 Summary:	YAML 1.1 parser and emitter for Java
 Group:		Development/Java
 License:	ASL 2.0
@@ -18,7 +18,8 @@ BuildSystem:	maven
 SnakeYAML reads and writes YAML 1.1. 2.0 stops constructing arbitrary
 Java classes from untrusted input unless the caller names them.
 2.7 is the current release and builds on Java 8. Tests are skipped.
-The multi-release module-info is not attached.
+The jar's automatic module name is org.yaml.snakeyaml. The upstream
+module-info compile stays out because it asks for a Java toolchain.
 
 %prep
 %setup -q -n snakeyaml
@@ -69,6 +70,11 @@ if packaging != "jar" or missing or executions != 1:
     raise SystemExit(f"packaging={packaging} missing={missing} executions={executions}")
 tree.write(path, encoding="UTF-8", xml_declaration=True)
 PY
+
+%build -a
+printf 'Automatic-Module-Name: org.yaml.snakeyaml\n' > target/auto-module.mf
+jar ufm target/snakeyaml-%{version}.jar target/auto-module.mf
+java --module-path target/snakeyaml-%{version}.jar --describe-module org.yaml.snakeyaml | grep -q '^org.yaml.snakeyaml'
 
 %files -f .mfiles
 %doc LICENSE.txt README.md
